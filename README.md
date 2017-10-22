@@ -38,7 +38,7 @@ Please note that I tried to avoid the use of the `unsafe` package, so no `SizeOf
 header.BitmapOffset = 40 + 14
 ```
 
-The numbers are based on the types included in the header and have been counted by hand. This is not such a big problem in this case as the header spec for the bitmap format won't change. Even the standard library does it like this. See `writer.go` in the `image`package: [](https://github.com/golang/image/blob/master/bmp/writer.go)
+The numbers are based on the types included in the header and have been counted by hand. This is not such a big problem in this case as the header spec for the bitmap format won't change. Even the standard library does it like this. See `writer.go` in the `image` package: [writer.go](https://github.com/golang/image/blob/master/bmp/writer.go)
 
 The program will write a `test.bmp`file with the result into the current working directory.
 
