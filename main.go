@@ -2,7 +2,7 @@ package main
 
 import (
 	"encoding/binary"
-	"fmt"
+	"math/rand"
 	"os"
 )
 
@@ -35,9 +35,17 @@ func main() {
 	var numberOfPixels = ImageHeight * ImageWidth
 	var data = make([]uint32, numberOfPixels)
 	var c = 0
+	var pixel, r, g, b uint32
 	for y = 0; y < ImageHeight; y++ {
 		for x = 0; x < ImageWidth; x++ {
-			data[c] = 0x000000FF
+			r = uint32(rand.Int() % 256)
+			g = uint32(rand.Int()%256) << 8
+			b = uint32(rand.Int()%256) << 16
+			pixel = 0xFF000000
+			pixel += r
+			pixel += g
+			pixel += b
+			data[c] = pixel
 			c++
 		}
 	}
@@ -58,8 +66,6 @@ func main() {
 	header.ImageSize = SizeOfData
 	header.NumberOfColorsInPalette = 0
 	header.ImportantColors = 0
-
-	fmt.Println(header.FileSize)
 
 	var cwd, err = os.Getwd()
 	if err != nil {
